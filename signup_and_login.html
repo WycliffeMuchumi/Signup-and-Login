@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signup_login.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <script src='static/js/check_password.js'></script>
+    <title>Signup and Login</title>
+</head>
+
+<body>
+    <div class="form">
+        <div class="head" class="signup">
+            <div onclick="swap(this);" data-tab="signup" class="signup-tab">
+                Signup
+            </div>
+            <div onclick="swap(this);" data-tab="login" class="login-tab">
+                Login
+            </div>
+        </div>
+        <div class="body" id="form-body">
+            <div class="signup">
+                <form action="/enroll" onSubmit="return checkPassword(this)" method="POST" :>
+                    <div class="form-row">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" name="full_name" placeholder="Full Name" required>
+                        <i class="fa fa-id-card" aria-hidden="true"></i>
+                        <input type="number" name="id_number" placeholder="IDNo." required>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <input type="email" name="email" placeholder="Email(you@example.com)" required>
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                        <input type="password" name="repeat_password" placeholder="Repeat Password" required>
+                        <button type="submit">signup</button>
+                    </div>
+                    <div class="span">
+                        <span>OR</span>
+                    </div>
+                    <div class="footer">
+                        Signup with
+                        <div class="social google">
+                            <i class="fa fa-google-plus" aria-hidden="true"></i>
+                        </div>
+                        <div class="social facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="login">
+                <form action="/login" method="POST" :>
+                    <div class="form-row">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <input type="email" name="email" placeholder="Email(you@example.com)" required>
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">login</button>
+                    </div>
+                    <div class="span">
+                        <span>OR</span>
+                    </div>
+                    <div class="footer">
+                        Login with
+                        <div class="social google">
+                            <i class="fa fa-google-plus" aria-hidden="true"></i>
+                        </div>
+                        <div class="social facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function swap(referTo) {
+            if (referTo.getAttribute("data-tab") == "signup") {
+                document.getElementById('form-body').classList.remove('active');
+                referTo.parentNode.classList.remove('login');
+            } else {
+                document.getElementById('form-body').classList.add('active');
+                referTo.parentNode.classList.add('login')
+            }
+        }
+    </script>
+</body>
+
+</html>
